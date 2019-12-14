@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+
+<h1>String Reversal</h1>
+<input type="file" id="fileChooser" >
+
+<p id="time"></p>
+
+<p id="fileContents"></p>
+
+<script type="text/javascript">
+    function autorun()
+    {
+        start = new Date().getTime();
+        var stringText;
+
+        document.getElementById('fileChooser').onchange = function ()
+        {
+            reader = new FileReader();
+            reader.readAsText(this.files[0]);
+            reader.onload = function ()
+            {
+                stringArray = reader.result.split(" ");
+                newString = "";
+
+                for (i = stringArray.length - 1; i >= 0; i --)
+                {
+                    newString += stringArray[i];
+                    newString += " ";
+                }
+
+                document.getElementById('fileContents').innerHTML = newString;
+
+                stop = new Date().getTime();
+
+                document.getElementById('time').innerHTML = stop - start;
+            };
+        };
+    }
+
+
+    if (window.addEventListener) window.addEventListener("load", autorun, false);
+    else if (window.attachEvent) window.attachEvent("onload", autorun);
+    else window.onload = autorun;
+</script>
+</body>
+</html>
